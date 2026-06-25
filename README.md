@@ -1,4 +1,3 @@
-# BibliotecaUNIDESC
 # 📚 Biblioteca UNIDESC
 
 Sistema de gerenciamento de biblioteca desenvolvido como projeto acadêmico utilizando **ASP.NET Core MVC**, **C#**, **Entity Framework Core** e **SQL Server**.
