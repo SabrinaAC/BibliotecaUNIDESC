@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using BibliotecaUNIDESC.Models;
 using BibliotecaUNIDESC.Data;
+using BibliotecaUNIDESC.ViewModels;
 
 namespace BibliotecaUNIDESC.Controllers
 {
@@ -18,14 +19,21 @@ namespace BibliotecaUNIDESC.Controllers
 
         public IActionResult Index()
         {
-            DashboardViewModel dashboard = new DashboardViewModel();
+            DashboardViewModel dashboard = new DashboardViewModel
+            {
+                TotalLivros = _context.Livros.Count(),
 
-            dashboard.TotalLivros = _context.Livros.Count();
+                LivrosDisponiveis = _context.Livros.Sum(l => l.Quantidade),
 
-            dashboard.UltimosLivros = _context.Livros
-                .OrderByDescending(l => l.Id)
-                .Take(5)
-                .ToList();
+                TotalUsuarios = 0,
+
+                TotalEmprestimos = 0,
+
+                UltimosLivros = _context.Livros
+                    .OrderByDescending(l => l.Id)
+                    .Take(5)
+                    .ToList()
+            };
 
             return View(dashboard);
         }
