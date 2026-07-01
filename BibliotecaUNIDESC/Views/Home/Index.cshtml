@@ -1,8 +1,90 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model BibliotecaUNIDESC.Models.DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="dashboard">
+
+    <div class="mb-4">
+        <h2>Bem-vinda, Sabrina! 👋</h2>
+        <p class="text-muted">
+            Gerencie sua biblioteca de forma simples e organizada.
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="card dashboard-card">
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div>
+                            <h6>Total de Livros</h6>
+                            <h2>@Model.TotalLivros</h2>
+                        </div>
+
+                        <i class="bi bi-book-fill card-icon"></i>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header bg-white">
+
+                    <h5 class="mb-0">
+                        Últimos livros cadastrados
+                    </h5>
+
+                </div>
+
+                <div class="card-body">
+
+                    <table class="table table-hover">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Título</th>
+                                <th>Autor</th>
+                                <th>Categoria</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            @foreach (var livro in Model.UltimosLivros)
+                            {
+                                <tr>
+
+                                    <td>@livro.Titulo</td>
+                                    <td>@livro.Autor</td>
+                                    <td>@livro.Categoria</td>
+
+                                </tr>
+                            }
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
